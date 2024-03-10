@@ -1,0 +1,16 @@
+.sidebar-container {
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 20px;
+}
+.sidebar-container .nav-items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.sidebar-container .nav-items a {
+  font-size: 20px;
+}
+.sidebar-container .nav-items a:hover {
+  text-decoration: underline;
+}
