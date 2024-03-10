@@ -114,7 +114,6 @@ const CheckoutPage = async ({ params }: CheckoutPageProps) => {
     "use server";
     await goBack(params.executionId, executionData?.task);
   };
-  console.log("executionData.workflowStatus", executionData.workflowStatus);
   return executionData.workflowStatus.status != "COMPLETED" &&
     executionData?.template != null ? (
     <Grid

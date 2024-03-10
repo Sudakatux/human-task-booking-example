@@ -15,7 +15,7 @@ export interface SingleResultProps extends BookItem {
 
 export default function SingleResult(props: SingleResultProps) {
   return (
-    <Card sx={{ width: 645, display: "flex" }}>
+    <Card sx={{ width: 945, display: "flex" }}>
       <CardMedia
         component={"img"}
         sx={{ maxWidth: 140 }}
@@ -29,6 +29,9 @@ export default function SingleResult(props: SingleResultProps) {
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {props.description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {props.destination}
           </Typography>
         </CardContent>
         <CardActions>

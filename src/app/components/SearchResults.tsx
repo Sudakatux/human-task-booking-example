@@ -6,20 +6,12 @@ import SingleResult from "./SingleResult";
 import { BookItem } from "../models";
 import { faker } from "@faker-js/faker";
 
-const genBookItem = (): BookItem => ({
-  id: faker.string.uuid(),
-  image: faker.image.url(),
-  title: faker.lorem.words(),
-  description: faker.lorem.sentence(),
-});
-
-const bookItems = Array(10).fill(0).map(genBookItem);
-
 interface SearchResultsProps {
   onBook: (bookItem: BookItem) => void;
+  bookItems: BookItem[];
 }
 
-const SearchResults = ({ onBook }: SearchResultsProps) => {
+const SearchResults = ({ onBook,bookItems=[] }: SearchResultsProps) => {
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       {bookItems.map((bookItem) => (
