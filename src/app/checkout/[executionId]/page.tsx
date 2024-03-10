@@ -10,6 +10,7 @@ import {
 import { findTaskAndClaim } from "./helpers";
 import { HumanTaskTemplate, Workflow } from "@io-orkes/conductor-javascript";
 import { Paper, Grid, Typography, Box } from "@mui/material";
+import moment from "moment";
 
 type CheckoutPageProps = {
   params: {
@@ -126,9 +127,47 @@ const CheckoutPage = async ({ params }: CheckoutPageProps) => {
     >
       <Grid item xs={4}>
         <Paper variant="outlined">
-          <Grid container justifyContent="center" p={2}>
+          <Grid container justifyContent="center" p={2} spacing={2}>
             <Grid item xs={12}>
-              <Typography variant="caption">Hotel name</Typography>
+              <Typography variant="h6">Hotel name</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                {executionData.workflowStatus.input?.bookItem?.title}
+              </Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Typography variant="body1">
+                Excellent Location @{" "}
+                {executionData.workflowStatus.input?.bookItem?.destination}
+              </Typography>
+            </Grid>
+          </Grid>
+        </Paper>
+        <Paper variant="outlined" sx={{ marginTop: 2 }}>
+          <Grid container justifyContent="center" p={2} spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h6">Your booking details</Typography>
+            </Grid>
+            <Grid container item xs={12}>
+              <Grid item xs={6}>
+                <Typography variant="body1"> Check In</Typography>
+
+                <Typography variant="body2">
+                  {" "}
+                  {moment(
+                    executionData.workflowStatus.input?.bookItem?.available.from
+                  ).format("ddd D, MMM")}
+                </Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <Typography variant="body1">Check Out</Typography>
+                <Typography variant="body2">
+                  {moment(
+                    executionData.workflowStatus.input?.bookItem?.available.to
+                  ).format("ddd D, MMM")}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
         </Paper>
@@ -149,7 +188,7 @@ const CheckoutPage = async ({ params }: CheckoutPageProps) => {
       justifyContent={"center"}
     >
       <Paper>
-        <Grid container justifyContent={"center"} direction={"row"} p={4}>
+        <Grid container justifyContent={"center"} direction={"row"} p={4} spacing={4}>
           <Grid item xs={12}>
             <Typography variant="h4">Checkout Completed</Typography>
           </Grid>
@@ -163,29 +202,41 @@ const CheckoutPage = async ({ params }: CheckoutPageProps) => {
                   <Typography variant="caption">Check In</Typography>
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography variant="caption">SomeDate</Typography>
+                  <Typography variant="caption">
+                    {moment(
+                      executionData.workflowStatus.input?.bookItem?.available
+                        .from
+                    ).format("ddd D, MMM")}
+                  </Typography>
                 </Grid>
                 <Grid item xs={4}>
                   <Typography variant="caption">Check Out</Typography>
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography variant="caption">SomeDate</Typography>
+                  <Typography variant="caption">
+                    {moment(
+                      executionData.workflowStatus.input?.bookItem?.available.to
+                    ).format("ddd D, MMM")}
+                  </Typography>
                 </Grid>
 
                 <Grid item xs={4}>
                   <Typography variant="caption">Location</Typography>
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography variant="caption">SomeLocation</Typography>
+                  <Typography variant="caption">
+                    {executionData.workflowStatus.input?.bookItem?.destination}
+                  </Typography>
                 </Grid>
-                
+
                 <Grid item xs={4}>
                   <Typography variant="caption">Contact</Typography>
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography variant="caption">email</Typography>
+                  <Typography variant="caption">
+                    {executionData.workflowStatus.output?.personalInfo.email}
+                  </Typography>
                 </Grid>
-                
               </Grid>
             </Paper>
           </Grid>

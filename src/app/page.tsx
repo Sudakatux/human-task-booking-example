@@ -1,7 +1,5 @@
 import { Grid, Stack, Box } from "@mui/material";
 import SearchBar from "./components/SearchBar";
-import SearchResults from "./components/SearchResults";
-import Filters from "./components/Filters";
 import {
   orkesConductorClient,
   WorkflowExecutor,
